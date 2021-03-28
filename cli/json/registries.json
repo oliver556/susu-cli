@@ -1,0 +1,5 @@
+{
+    "vue": "https://github.com:xingxiaowu/template-vue#master",
+    "electron-vue": "https://github.com:xingxiaowu/template-vue#electron",
+    "syncCloud": "https://gitee.com:oliver556/cli-test#master"
+}
