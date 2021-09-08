@@ -29,7 +29,8 @@ const promptList = [
   { type: 'input', name: 'description', message: '描述:', default: '' }
 ]
 
-const spinner = ora('下载中...')
+const spinner = ora('下载中...');
+// const spinnerInstall = (logSymbols.success, ora(chalk.green('下载成功，正在进行install操作...')))
 
 // 新建项目
 async function create (projectName, options) {
@@ -47,6 +48,7 @@ async function create (projectName, options) {
     message: '选择初始化的template',
     choices: keys
   }
+  // 将问题添加到交互内容的前面，提醒使用者如何使用
   promptList.unshift(templateSwitch);
 
   // 判断当前路径下是否有此文件夹
@@ -76,7 +78,7 @@ async function create (projectName, options) {
   }
 }
 
-// 拉取代码
+// install package.json里的依赖
 function npmInstall () {
   shell.exec('npm install');
 }
@@ -89,10 +91,11 @@ function downTemplate (url, projectName, callBack) {
       // 下载失败
       spinner.fail() // 下载失败提示
       log(logSymbols.error, chalk.red(err));
-      return;
+    } else {
+      // 下载成功
+      spinner.succeed();
+      callBack();
     }
-    // 下载成功
-    spinner.succeed();
   })
 }
 

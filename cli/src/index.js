@@ -3,6 +3,7 @@
 
 // init 命令文件
 const create = require('../lib/init');
+// ls 命令文件
 const onList = require('../lib/onList');
 
 // 用来进行命令行交互的
@@ -17,6 +18,7 @@ program.version(packageConfig.version);
 // init
 program
   .command('init <name>')
+  // alias 简写命令
   .alias('i')
   .description('新建项目的命令')
   .action((name, cmd) => {
